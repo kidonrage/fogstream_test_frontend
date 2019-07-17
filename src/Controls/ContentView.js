@@ -1,5 +1,9 @@
 import React from 'react';
-import NewsScreen from '../NewsScreen/NewsScreen.js';
+import NewsScreen from '../NewsScreen/NewsScreen';
+import SettingsScreen from '../SettingsScreen/Settings';
+import About from '../AboutScreen/About';
+import Help from '../HelpScreen/Help';
+import { Route } from 'react-router-dom';
 import { makeStyles } from '@material-ui/core/styles';
 
 const useStyles = makeStyles(theme => ({
@@ -16,7 +20,10 @@ export default function ContentView() {
 	return (
 		<main className={classes.content}>
 			<div className={classes.toolbar} />
-			<NewsScreen />
+			<Route exact path="/" component={NewsScreen} />
+			<Route path="/settings" component={SettingsScreen} />
+			<Route path="/about" component={About} />
+			<Route path="/help" component={Help} />
 		</main>
 	)
 }

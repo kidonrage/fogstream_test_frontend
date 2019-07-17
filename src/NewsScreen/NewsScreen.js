@@ -8,7 +8,6 @@ import './NewsScreen.css'
 export default class NewsScreen extends React.Component {
 	state = {
 		articles: [],
-		country: 'us',
 		query: '',
 		isFetching: false
 	}
@@ -17,7 +16,7 @@ export default class NewsScreen extends React.Component {
 		this.setState({
 			isFetching: true
 		});
-		fetch('https://newsapi.org/v2/top-headlines?country='+ country +'&category='+ query +'&from=2019-07-16&sortBy=publishedAt&apiKey=b3407958df3b49e1be282480305df7ad')
+		fetch('https://newsapi.org/v2/everything?q='+ query +'&from=2019-07-16&sortBy=publishedAt&apiKey=b3407958df3b49e1be282480305df7ad')
 		.then((response) => {
 			return response.json();
 		})
@@ -38,7 +37,7 @@ export default class NewsScreen extends React.Component {
 				<CssBaseline />
 				{fetching &&
 					<div className="fetching-indicator">
-						<div class="lds-ring"><div></div><div></div><div></div><div></div></div>
+						<div className="lds-ring"><div></div><div></div><div></div><div></div></div>
 					</div>
 				}
 				<NewsList news={this.state.articles} isFetching={this.state.isFetching} />

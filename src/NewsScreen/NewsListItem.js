@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import Card from '@material-ui/core/Card';
 import CardActionArea from '@material-ui/core/CardActionArea';
 import CardActions from '@material-ui/core/CardActions';
@@ -25,18 +26,18 @@ export default function NewsListItem({newsItem}, key) {
 					{newsItem.title}
 					</Typography>
 					<Typography variant="body2" color="textSecondary" component="p">
-						{newsItem.content}
+						{newsItem.description}
 					</Typography>
 				</CardContent>
 			</CardActionArea>
-			<CardActions>
+			{/* <CardActions>
 				<Button size="small" color="primary">
 					Share
 				</Button>
 				<Button size="small" color="primary">
 					Learn More
 				</Button>
-			</CardActions>
+			</CardActions> */}
 		</Card>
 	)
 }

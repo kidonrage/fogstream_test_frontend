@@ -1,8 +1,7 @@
 import React from 'react';
 import './App.css';
 import NavBar from './Controls/NavBar';
-import Sidebar from './Controls/Sidebar';
-import ContentView from './Controls/ContentView';
+import MainScreen from './Controls/MainScreen';
 
 function App() {
 
@@ -10,9 +9,8 @@ function App() {
 		<div className="root">
 
 			<NavBar />
-			<Sidebar />
-
-			<ContentView />
+			
+			<MainScreen />
 
 		</div>
 	)

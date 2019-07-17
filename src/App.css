@@ -1,3 +1,8 @@
 .root {
 	display: flex;
 }
+
+/* Peremestit' */
+.app-nav .active {
+	background: rgba(0,0,0,0.04);
+}
