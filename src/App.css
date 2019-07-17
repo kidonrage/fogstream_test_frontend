@@ -23,6 +23,21 @@
   color: #61dafb;
 }
 
+.search-form {
+	margin: 30px 0;
+}
+.search-form-body {
+	display: flex;
+	align-items: center;
+	justify-content: space-between
+}
+.search-form-input {
+	width: 100%;
+}
+.search-form-input input {
+	text-indent: 10px;
+}
+
 @keyframes App-logo-spin {
   from {
     transform: rotate(0deg);
