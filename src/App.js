@@ -1,54 +1,83 @@
 import React from 'react';
 import './App.css';
+import NewsScreen from './NewsScreen/NewsScreen.js';
+
+import { makeStyles } from '@material-ui/core/styles';
+import Drawer from '@material-ui/core/Drawer';
+import AppBar from '@material-ui/core/AppBar';
 import CssBaseline from '@material-ui/core/CssBaseline';
-import Container from '@material-ui/core/Container';
-import NewsList from './NewsList.js';
-import SearchForm from './SearchForm';
+import Toolbar from '@material-ui/core/Toolbar';
+import List from '@material-ui/core/List';
+import Typography from '@material-ui/core/Typography';
+import Divider from '@material-ui/core/Divider';
+import ListItem from '@material-ui/core/ListItem';
+import ListItemIcon from '@material-ui/core/ListItemIcon';
+import ListItemText from '@material-ui/core/ListItemText';
+import InboxIcon from '@material-ui/icons/MoveToInbox';
+import MailIcon from '@material-ui/icons/Mail';
 
-class App extends React.Component {
-	state = {
-		articles: [],
-		country: 'us',
-		query: ''
-	}
+const drawerWidth = 240;
 
-	fetchNews = (query, country) => {
-		console.log('fetching news!')
-		fetch('https://newsapi.org/v2/top-headlines?country='+ country +'&category='+ query +'&from=2019-07-16&sortBy=publishedAt&apiKey=b3407958df3b49e1be282480305df7ad')
-		.then((response) => {
-			return response.json();
-		})
-		.then((myJson) => {
-			console.log(myJson);
-			this.setState({
-				articles: myJson.articles
-			})
-		});
-	}
+const useStyles = makeStyles(theme => ({
+  root: {
+    display: 'flex',
+  },
+  appBar: {
+    zIndex: theme.zIndex.drawer + 1,
+  },
+  drawer: {
+    width: drawerWidth,
+    flexShrink: 0,
+  },
+  drawerPaper: {
+    width: drawerWidth,
+  },
+  content: {
+    flexGrow: 1,
+		padding: theme.spacing(3)
+  },
+  toolbar: theme.mixins.toolbar,
+}));
 
-	handleSubmit = (e) => {
-		e.preventDefault();
-		this.fetchNews(this.state.query, this.state.country)
-	}
 
-	handleChange = (e) => {
-		this.setState({
-			query: e.target.value
-		})
-	}
 
-	render() {
-		// console.log(this.state);
-		return (
-			<div className="main-app-lol">
-				<Container maxWidth="xl">
-					<SearchForm fetchNews={this.fetchNews} />
-					<CssBaseline />
-					<NewsList news={this.state.articles} />
-				</Container>
-			</div>
-		)
-	}
+function App() {
+	const classes = useStyles();
+
+	return (
+		<div className={classes.root}>
+			<CssBaseline />
+			<AppBar position="fixed" className={classes.appBar}>
+        <Toolbar>
+          <Typography variant="h6" noWrap>
+            Fogstream News
+          </Typography>
+        </Toolbar>
+      </AppBar>
+			<Drawer
+        className={classes.drawer}
+        variant="permanent"
+        classes={{
+          paper: classes.drawerPaper,
+        }}
+      >
+        <div className={classes.toolbar} />
+        <List>
+          {['Главная', 'Настройки', 'Помощь', 'О нас'].map((text, index) => (
+            <ListItem button key={text}>
+              <ListItemIcon>{index % 2 === 0 ? <InboxIcon /> : <MailIcon />}</ListItemIcon>
+              <ListItemText primary={text} />
+            </ListItem>
+          ))}
+        </List>
+      </Drawer>
+			<main className={classes.content}>
+        <div className={classes.toolbar} />
+				<NewsScreen />
+			</main>
+			
+		</div>
+	)
 }
 
 export default App;

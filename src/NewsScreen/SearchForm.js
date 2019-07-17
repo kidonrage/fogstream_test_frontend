@@ -7,7 +7,7 @@ import Grid from '@material-ui/core/Grid';
 
 export default class SearchForm extends React.Component {
 	state = {
-		query: null
+		query: ''
 	}
 
 	handleChange = (e) => {
