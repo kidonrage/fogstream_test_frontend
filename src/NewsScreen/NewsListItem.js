@@ -7,12 +7,19 @@ import CardContent from '@material-ui/core/CardContent';
 import CardMedia from '@material-ui/core/CardMedia';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
+import './ListItem.css';
 
 
 export default function NewsListItem({newsItem}, key) {
 
+	function getDate() {
+		var date = new Date(newsItem.publishedAt);
+		var dateString = date.getFullYear() + '-' + ('0' + (date.getMonth() + 1)).slice(-2) + '-' + ('0' + date.getDate()).slice(-2);
+		return dateString
+	}
+
 	return(
-		<Card key={key}>
+		<Card key={key} className="news-card">
 			<CardActionArea>
 				<CardMedia
 					component="img"
@@ -28,6 +35,9 @@ export default function NewsListItem({newsItem}, key) {
 					<Typography variant="body2" color="textSecondary" component="p">
 						{newsItem.description}
 					</Typography>
+					<Typography className="news-card-date" color="textSecondary" component="span">
+          	Опубликовано: { getDate() }
+       		</Typography>
 				</CardContent>
 			</CardActionArea>
 			{/* <CardActions>

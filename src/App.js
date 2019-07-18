@@ -1,17 +1,17 @@
 import React from 'react';
 import './App.css';
-import NavBar from './Controls/NavBar';
-import MainScreen from './Controls/MainScreen';
+import ControlPanel from './Controls/ControlPanel';
+import ContentView from './Controls/ContentView';
+import { BrowserRouter } from 'react-router-dom';
 
 function App() {
 
 	return (
-		<div className="root">
-
-			<NavBar />
-			
-			<MainScreen />
-
+		<div className = "root">
+			<BrowserRouter>
+				<ControlPanel />
+				<ContentView />
+			</BrowserRouter>
 		</div>
 	)
 }

@@ -3,7 +3,7 @@ import CssBaseline from '@material-ui/core/CssBaseline';
 import Container from '@material-ui/core/Container';
 import NewsList from './NewsList.js';
 import SearchForm from './SearchForm';
-import './NewsScreen.css'
+import './NewsScreen.css';
 
 export default class NewsScreen extends React.Component {
 	state = {
@@ -13,6 +13,9 @@ export default class NewsScreen extends React.Component {
 	}
 
 	fetchNews = (query, country) => {
+		if (query == null || query === "") {
+			return
+		}
 		this.setState({
 			isFetching: true
 		});

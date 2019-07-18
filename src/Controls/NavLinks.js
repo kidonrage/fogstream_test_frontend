@@ -1,8 +1,7 @@
 import React from 'react';
 import { Link, NavLink } from 'react-router-dom';
-
+import withWidth, { isWidthUp } from '@material-ui/core/withWidth';
 import { makeStyles } from '@material-ui/core/styles';
-import Drawer from '@material-ui/core/Drawer';
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
@@ -12,16 +11,7 @@ import SettingsIcon from '@material-ui/icons/Build';
 import HelpIcon from '@material-ui/icons/Help';
 import AboutIcon from '@material-ui/icons/Info';
 
-const drawerWidth = 240;
-
 const useStyles = makeStyles(theme => ({
-  drawer: {
-    width: drawerWidth,
-    flexShrink: 0,
-  },
-  drawerPaper: {
-    width: drawerWidth,
-  },
   toolbar: theme.mixins.toolbar,
 }));
 
@@ -29,18 +19,14 @@ const icons = (index) => {
 	switch(index) {
 		case 0:
 			return (<HomeIcon />)
-			break
 		case 1:
 			return (<SettingsIcon />)
-			break
 		case 2:
 			return (<HelpIcon />)
-			break
 		case 3:
 			return(<AboutIcon />)
 		default:
 			return (<HelpIcon />)
-			break
 	}
 }
 
@@ -48,7 +34,7 @@ function ListItemLink(props) {
   return <ListItem button component={NavLink} {...props}  />;
 }
 
-export default function Sidebar() {
+function NavLinks({width}) {
 	const classes = useStyles();
 
 	const menu = [
@@ -59,14 +45,10 @@ export default function Sidebar() {
 	]
 
 	return (
-		<Drawer
-			className={classes.drawer}
-			variant="permanent"
-			classes={{
-				paper: classes.drawerPaper,
-			}}
-		>
-			<div className={classes.toolbar} />
+		<div>
+			{isWidthUp('sm', width) &&
+				<div className={classes.toolbar} />
+			}
 			<List className="app-nav">
 				{menu.map((menuItem, index) => (
 					<ListItemLink exact to={menuItem.href} key={menuItem.title}>
@@ -75,6 +57,8 @@ export default function Sidebar() {
 					</ListItemLink>
 				))}
 			</List>
-		</Drawer>
+		</div>
 	)
 }
+
+export default withWidth()(NavLinks);
