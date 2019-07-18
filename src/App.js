@@ -4,6 +4,7 @@ import ControlPanel from './Controls/ControlPanel';
 import ContentView from './Controls/ContentView';
 import { BrowserRouter } from 'react-router-dom';
 
+
 function App() {
 
 	return (

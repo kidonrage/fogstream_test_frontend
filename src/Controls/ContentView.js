@@ -1,5 +1,6 @@
 import React from 'react';
 import NewsScreen from '../NewsScreen/NewsScreen';
+import NewsDetails from '../NewsDetailsScreen/NewsDetails';
 import SettingsScreen from '../SettingsScreen/Settings';
 import About from '../AboutScreen/About';
 import Help from '../HelpScreen/Help';
@@ -21,6 +22,8 @@ export default function ContentView() {
 		<main className={classes.content}>
 			<div className={classes.toolbar} />
 			<Route exact path="/" component={NewsScreen} />
+			<Route path="/:news_id" component={NewsDetails} />
+
 			<Route path="/settings" component={SettingsScreen} />
 			<Route path="/about" component={About} />
 			<Route path="/help" component={Help} />

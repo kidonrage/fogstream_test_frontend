@@ -7,6 +7,7 @@ import CardContent from '@material-ui/core/CardContent';
 import CardMedia from '@material-ui/core/CardMedia';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
+import noImage from '../no-image.png';
 import './ListItem.css';
 
 
@@ -18,6 +19,16 @@ export default function NewsListItem({newsItem}, key) {
 		return dateString
 	}
 
+	function getImg(imgSrc) {
+		// Empty img src filtration
+		if (imgSrc && imgSrc !== "https:") {
+			console.log("IMAGE! " + imgSrc);
+			return imgSrc
+		} else {
+			return noImage
+		}
+	}
+
 	return(
 		<Card key={key} className="news-card">
 			<CardActionArea>
@@ -25,8 +36,10 @@ export default function NewsListItem({newsItem}, key) {
 					component="img"
 					alt={newsItem.title}
 					height="140"
-					image={newsItem.urlToImage}
+					image={getImg(newsItem.urlToImage)}
 					title={newsItem.title}
+					// 404 img src handling
+					onError={(e)=>{e.target.src=noImage}}
 				/>
 				<CardContent>
 					<Typography gutterBottom variant="h5" component="h2">
