@@ -9,19 +9,21 @@ import './SearchForm.css'
 
 export default class SearchForm extends React.Component {
 	state = {
-		query: ''
+		query: '',
+		from: '',
+		to: ''
 	}
 
 	handleChange = (e) => {
 		this.setState({
-			query: e.target.value
-		});
+			[e.target.name]: e.target.value
+		})
 	}
 
 	handleSubmit = (e) => {
 		e.preventDefault();
 		console.log(this.state);
-		this.props.fetchNews(this.state.query, 'us');
+		this.props.fetchNews(this.state.query, this.state.from, this.state.to);
 	}
 
 	render() {
@@ -34,6 +36,7 @@ export default class SearchForm extends React.Component {
 								placeholder="Type something..."
 								inputProps={{ 'aria-label': 'Напечатайте что-нибудь...' }}
 								onChange={this.handleChange}
+								name="query"
 								className="search-form-input"
 							/>
 							<IconButton aria-label="Search" type="submit">
@@ -42,21 +45,19 @@ export default class SearchForm extends React.Component {
 						</Paper>
 						<Paper className="search-form-date">
 							<TextField
-								id="date"
+								name="from"
 								label="From"
 								type="date"
-								defaultValue="2017-05-24"
-								// className={classes.textField}
+								onChange={this.handleChange}
 								InputLabelProps={{
 									shrink: true,
 								}}
 							/>
 							<TextField
-								id="date"
+								name="to"
 								label="To"
 								type="date"
-								defaultValue="2017-05-24"
-								// className={classes.textField}
+								onChange={this.handleChange}
 								InputLabelProps={{
 									shrink: true,
 								}}

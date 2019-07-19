@@ -46,7 +46,7 @@ function NavLinks({width}) {
 
 	return (
 		<div>
-			{isWidthUp('sm', width) &&
+			{ isWidthUp('sm', width) &&
 				<div className={classes.toolbar} />
 			}
 			<List className="app-nav">
