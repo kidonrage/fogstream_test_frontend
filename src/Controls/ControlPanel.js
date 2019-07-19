@@ -47,6 +47,7 @@ function ControlPanel({width}) {
 						</Typography>
 					</Toolbar>
 				</AppBar>
+				<nav>
 				<Drawer
 					className={classes.drawer}
 					variant="permanent"
@@ -56,6 +57,7 @@ function ControlPanel({width}) {
 				>
 					<NavLinks />
 				</Drawer>
+				</nav>
 			</div>
 		)
 	} else {

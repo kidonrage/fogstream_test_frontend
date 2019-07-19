@@ -7,8 +7,8 @@ import CardContent from '@material-ui/core/CardContent';
 import CardMedia from '@material-ui/core/CardMedia';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
-import noImage from '../no-image.png';
-import './ListItem.css';
+import noImage from '../../no-image.png';
+import './NewsListItem.css';
 
 
 export default function NewsListItem({newsItem}, key) {

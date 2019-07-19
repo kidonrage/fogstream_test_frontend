@@ -1,0 +1,28 @@
+.search-form {
+	margin-bottom: 30px;
+}
+.search-form-query {
+	display: flex;
+	align-items: center;
+	justify-content: space-between
+}
+.search-form-input {
+	width: 100%;
+}
+.search-form-input input {
+	text-indent: 10px;
+}
+.search-form-date {
+	margin-top: 10px;
+	padding-top: 10px;
+	display: flex;
+}
+.search-form-date label {
+	margin-left: 10px;
+}
+.search-form-date input {
+	text-indent: 5px;
+}
+.search-form-date > div {
+	width: 100%;	
+}

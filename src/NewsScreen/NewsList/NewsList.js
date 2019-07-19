@@ -1,6 +1,6 @@
 import React from 'react';
 import Grid from '@material-ui/core/Grid';
-import NewsListItem from './NewsListItem'
+import NewsListItem from './NewsListItem.js'
 
 export default function NewsList({news}, {isFetching}) {
 	const newsItems = news.length ? (
@@ -17,11 +17,6 @@ export default function NewsList({news}, {isFetching}) {
 	
   return (
 		<div className="news-list">
-			{isFetching &&
-				<div className="fetching-indicator">
-					<div class="lds-ring"><div></div><div></div><div></div><div></div></div>
-				</div>
-			}
 			<Grid container justify="center" spacing={3}>
 				{ newsItems }
 			</Grid>

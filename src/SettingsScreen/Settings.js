@@ -5,15 +5,12 @@ import Switch from '@material-ui/core/Switch';
 import Typography from '@material-ui/core/Typography';
 import Slider from '@material-ui/core/Slider';
 
+import ThemeSwitch from '../ThemeSwitch';
+
 export default function Settings() {
 	return (
 		<div>
-      <FormControlLabel
-        control={
-          <Switch onChange={() => console.log("Switched!")} value="nightMode" />
-        }
-        label="Night mode"
-      />
+      <ThemeSwitch />
 			
 			<Typography id="discrete-slider" gutterBottom>
         Posts count

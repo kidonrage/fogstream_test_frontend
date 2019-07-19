@@ -3,7 +3,7 @@ import BottomScrollListener from 'react-bottom-scroll-listener'
 
 import CssBaseline from '@material-ui/core/CssBaseline';
 import Container from '@material-ui/core/Container';
-import NewsList from './NewsList.js';
+import NewsList from './NewsList/NewsList.js';
 import SearchForm from './SearchForm';
 import CircularProgress from '@material-ui/core/CircularProgress';
 import './NewsScreen.css';
@@ -20,7 +20,7 @@ export default class NewsScreen extends React.Component {
 	handleContainerOnBottom = () => {
 		// Check the free subscription limit (100 posts)
 		if (this.state.page * this.state.newsOnPage <= 100 ) {
-			this.fetchNews('Илон', 'ru');
+			this.fetchNews(this.state.query, 'ru');
 		}
   }
 
@@ -33,17 +33,24 @@ export default class NewsScreen extends React.Component {
 			isFetching: true
 		});
 		fetch('https://newsapi.org/v2/everything?q='+ query +'&pageSize='+ this.state.newsOnPage +'&page='+ this.state.page +'&sortBy=publishedAt&apiKey=b3407958df3b49e1be282480305df7ad')
-		//fetch('https://newsapi.org/v2/everything?q='+ query +'&pageSize=100&sortBy=publishedAt&apiKey=b3407958df3b49e1be282480305df7ad')
 		.then((response) => {
 			return response.json();
 		})
 		.then((newsJSON) => {
-			let page = this.state.page + 1
-			const articles = [...this.state.articles, ...newsJSON.articles];
+			var page = 1
+			var articles = []
+			console.log(this.state.query == query)
+			if (this.state.query === query) {
+				page = this.state.page + 1
+				articles = [...this.state.articles, ...newsJSON.articles];
+			} else {
+				articles = [...newsJSON.articles];
+			}
 			this.setState({
 				articles: articles,
 				isFetching: false,
-				page: page
+				page: page,
+				query: query
 			})
 		});
 	}
