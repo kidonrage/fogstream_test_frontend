@@ -1,4 +1,5 @@
 import React from 'react';
+import {connect} from 'react-redux';
 import Paper from '@material-ui/core/Paper';
 import InputBase from '@material-ui/core/InputBase';
 import IconButton from '@material-ui/core/IconButton';
@@ -7,7 +8,7 @@ import Grid from '@material-ui/core/Grid';
 import TextField from '@material-ui/core/TextField';
 import './SearchForm.css'
 
-export default class SearchForm extends React.Component {
+class SearchForm extends React.Component {
 	state = {
 		query: '',
 		from: '',
@@ -23,6 +24,7 @@ export default class SearchForm extends React.Component {
 	handleSubmit = (e) => {
 		e.preventDefault();
 		console.log(this.state);
+		this.props.addArticles([{name: "kuradura"}]);
 		this.props.fetchNews(this.state.query, this.state.from, this.state.to);
 	}
 
@@ -69,3 +71,17 @@ export default class SearchForm extends React.Component {
 		);
 	}
 }
+
+const mapStatesToProps = (state) => {
+	return {
+		query: state.query
+	}
+}
+
+const mapDispatchToProps = (dispatch) => {
+	return {
+		addArticles: (articles) => { dispatch({type: "ADD_ARTICLES", articles: articles}) }
+	}
+}
+
+export default connect(mapStatesToProps, mapDispatchToProps)(SearchForm);

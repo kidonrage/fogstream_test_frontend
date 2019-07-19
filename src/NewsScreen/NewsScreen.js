@@ -1,6 +1,6 @@
 import React from 'react';
+import {connect} from 'react-redux';
 import BottomScrollListener from 'react-bottom-scroll-listener'
-
 import CssBaseline from '@material-ui/core/CssBaseline';
 import Container from '@material-ui/core/Container';
 import NewsList from './NewsList/NewsList.js';
@@ -8,7 +8,7 @@ import SearchForm from './SearchForm';
 import CircularProgress from '@material-ui/core/CircularProgress';
 import './NewsScreen.css';
 
-export default class NewsScreen extends React.Component {
+class NewsScreen extends React.Component {
 	state = {
 		page: 1,
 		newsOnPage: 15,
@@ -80,7 +80,11 @@ export default class NewsScreen extends React.Component {
 	}
 
 	render() {
+		console.log(this.props);
+
 		const fetching = this.state.isFetching;
+		const articles = this.props 
+		
 		return (
 			<Container maxWidth="xl" onScroll={this.handleScroll}>
 				<SearchForm fetchNews={this.fetchNews} />
@@ -95,5 +99,12 @@ export default class NewsScreen extends React.Component {
 			</Container>
 		)
 	}
-
 }
+
+const mapStatesToProps = (state) => {
+	return {
+		articles: state.articles
+	}
+}
+
+export default connect(mapStatesToProps)(NewsScreen);
