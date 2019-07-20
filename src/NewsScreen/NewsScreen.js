@@ -6,7 +6,7 @@ import CssBaseline from '@material-ui/core/CssBaseline';
 import NewsList from './NewsList/NewsList.js';
 import SearchForm from './SearchForm';
 import CircularProgress from '@material-ui/core/CircularProgress';
-import FetchWorker from './FetchWorker';
+import FetchWorker from '../Helpers/FetchWorker';
 import './NewsScreen.css';
 
 class NewsScreen extends React.Component {

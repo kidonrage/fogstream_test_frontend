@@ -1,6 +1,5 @@
 import React from 'react';
 import './ArticleDetailedCard.css';
-import { makeStyles } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
 import Card from '@material-ui/core/Card';
 import CardHeader from '@material-ui/core/CardHeader';
@@ -10,18 +9,12 @@ import CardActions from '@material-ui/core/CardActions';
 import Avatar from '@material-ui/core/Avatar';
 import Typography from '@material-ui/core/Typography';
 import noImage from '../no-image.png';
+import ArticleHelper from '../Helpers/ArticleHelper';
 
 export default function ArticleDetailedCard(props) {
-	const article = props.article
+	const articleHelper = new ArticleHelper()
 
-	function getImg(imgSrc) {
-		// Empty img src filtration
-		if (imgSrc && imgSrc !== "https:") {
-			return imgSrc
-		} else {
-			return noImage
-		}
-	}
+	const article = props.article
 
   return (
     <Card className={'article-detailed'}>
@@ -32,14 +25,13 @@ export default function ArticleDetailedCard(props) {
           </Avatar>
         }
         title={article.author ? article.author : 'Неизвестный автор'}
-        subheader={article.publishedAt}
+        subheader={'Опубликовано: ' + articleHelper.getReadableDate(article.publishedAt)}
       />
       <CardMedia
 				component="img"
 				alt={article.title}
         className={'article-detailed-img'}
-        image={getImg(article.urlToImage)}
-        alt={article.title}
+        image={articleHelper.getImg(article.urlToImage)}
 				// 404 img src handling
 				onError={(e)=>{e.target.src=noImage}}
       />

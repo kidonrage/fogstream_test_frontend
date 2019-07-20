@@ -6,7 +6,7 @@ import IconButton from '@material-ui/core/IconButton';
 import SearchIcon from '@material-ui/icons/Search';
 import Grid from '@material-ui/core/Grid';
 import TextField from '@material-ui/core/TextField';
-import FetchWorker from './FetchWorker';
+import FetchWorker from '../Helpers/FetchWorker';
 import './SearchForm.css'
 
 class SearchForm extends React.Component {

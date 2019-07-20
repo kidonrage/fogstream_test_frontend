@@ -29,9 +29,6 @@ const getLines = style('mode', {
 const getNavActive = style('mode', {
 	dark: 'rgba(255,255,255,0.04)'
 });
-const getCardAction = style('mode', {
-	dark: 'rgba(255,255,255,0.04) !important'
-});
 
 
 const GlobalStyle = createGlobalStyle`
