@@ -24,7 +24,7 @@ class SearchForm extends React.Component {
 			fromString: this.state.from,
 			toString: this.state.to
 		}
-		this.fetchWorker.fetchNews(queryInfo.queryString, 15, queryInfo.fromString, queryInfo.toString)
+		this.fetchWorker.fetchNews(queryInfo.queryString, this.props.newsOnPage, queryInfo.fromString, queryInfo.toString)
 		.then((newsJSON) => {
 			console.log("JSON PARSED");
 			console.log(newsJSON);
@@ -112,6 +112,7 @@ const mapStatesToProps = (state) => {
 		query: state.query,
 		from: state.from,
 		to: state.to,
+		newsOnPage: state.newsOnPage
 	}
 }
 

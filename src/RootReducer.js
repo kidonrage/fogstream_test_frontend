@@ -21,13 +21,19 @@ const rootReducer = (state = initState, action) => {
 			to: action.queryInfo.toString
 		}
 	}
-	if (action.type === "ADD_ARTICLES") {
+	else if (action.type === "ADD_ARTICLES") {
 		console.log("ADDING ARTICLES!")
 		console.log(action.articles);
 		return {
 			...state,
 			articles: [...state.articles, ...action.articles],
 			page: state.page + 1
+		}
+	}
+	else if (action.type === "UPDATE_NEWSONPAGE") {
+		return {
+			...state,
+			newsOnPage: action.value
 		}
 	}
 	return state;

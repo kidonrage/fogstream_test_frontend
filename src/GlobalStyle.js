@@ -21,6 +21,11 @@ const getFormBG = style('mode', {
 	light: '#fff !important',
 	dark: 'rgba(55,55,55,1) !important'
 });
+const getLines = style('mode', {
+	light: 'rgba(0, 0, 0, 0.12) !important',
+	dark: 'rgba(255, 255, 255, 0.12) !important'
+	
+})
 
 const GlobalStyle = createGlobalStyle`
 body {
@@ -56,6 +61,9 @@ form button {
 }
 .fetching-indicator {
 	background-color: ${getControlsSurface};
+}
+hr {
+	background-color: ${getLines};
 }
 `;
 

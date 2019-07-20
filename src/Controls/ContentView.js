@@ -22,7 +22,7 @@ export default function ContentView() {
 		<main className={classes.content}>
 			<div className={classes.toolbar} />
 			<Route exact path="/" component={NewsScreen} />
-			<Route path="/:news_id" component={NewsDetails} />
+			{/* <Route path="/:news_id" component={NewsDetails} /> */}
 
 			<Route path="/settings" component={SettingsScreen} />
 			<Route path="/about" component={About} />
