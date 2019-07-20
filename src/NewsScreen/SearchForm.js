@@ -19,7 +19,7 @@ class SearchForm extends React.Component {
 	fetchWorker = new FetchWorker();
 
 	fetchNewArticles = () => {
-		this.props.changeFetching(true)
+		this.props.setFetching(true)
 		let queryInfo = {
 			queryString: this.state.query,
 			fromString: this.state.from,
@@ -33,7 +33,7 @@ class SearchForm extends React.Component {
 			newArticles = [...newsJSON.articles];
 			this.props.saveArticles(newArticles, queryInfo);
 			console.log("ARTICLES: " + newArticles);
-			this.props.changeFetching(false)
+			this.props.setFetching(false)
 		});
 	}
 

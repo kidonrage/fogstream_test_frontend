@@ -17,7 +17,7 @@ class NewsScreen extends React.Component {
 
 	fetchWorker = new FetchWorker();
 	
-	changeFetching = (isFetching) => {
+	setFetching = (isFetching) => {
 		this.setState({
 			isFetching: isFetching
 		})
@@ -26,11 +26,11 @@ class NewsScreen extends React.Component {
 	handleContainerOnBottom = () => {
 		// Check the free subscription limit (100 postss)
 		if (this.props.page * this.props.newsOnPage <= 100 ) {
-			this.changeFetching(true)
+			this.setFetching(true)
 			this.fetchWorker.fetchNews(this.props.query, this.props.newsOnPage, this.props.from, this.props.to, this.props.page)
 			.then((nextArticlesJSON) => {
 				this.props.loadMore(nextArticlesJSON.articles);
-				this.changeFetching(false)
+				this.setFetching(false)
 			})
 		} else {
 			let remainingArticles = 100 - this.props.articles.length;
@@ -46,7 +46,7 @@ class NewsScreen extends React.Component {
 		
 		return (
 			<div>
-				<SearchForm fetchNews={this.fetchNews} changeFetching={this.changeFetching} />
+				<SearchForm fetchNews={this.fetchNews} setFetching={this.setFetching} />
 				<CssBaseline />
 				{fetching &&
 					<div className="fetching-indicator">
