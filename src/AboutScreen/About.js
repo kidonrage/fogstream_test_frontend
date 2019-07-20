@@ -1,4 +1,7 @@
 import React from 'react';
+import MapContainer from './MapContainer';
+import Typography from '@material-ui/core/Typography';
+import './About.css';
 
 export default class Help extends React.Component {
 	// Как я понял, текстовая информация и координаты карты для этого раздела будут забираться с сервера (и, допустим, редактироваться из админки), поэтому я решил сделать компонент классом и хранить эту информацию в стейте
@@ -9,7 +12,10 @@ export default class Help extends React.Component {
 	
 	render() {
 		return (
-			<div>{this.state.aboutText}</div>
+			<div class="about-container">
+				<Typography component="p">{this.state.aboutText}</Typography>
+				<MapContainer />
+			</div>
 		)
 	}
 }

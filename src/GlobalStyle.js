@@ -14,18 +14,22 @@ const getHeader = style('mode', {
 	dark: 'rgba(31,31,31,1) !important'
 });
 const getControlsSurface = style('mode', {
-	light: '#fff !important',
+	light: '#fff',
 	dark: 'rgba(31,31,31,1) !important'
 });
 const getFormBG = style('mode', {
-	light: '#fff !important',
+	light: '#fff',
 	dark: 'rgba(55,55,55,1) !important'
 });
 const getLines = style('mode', {
-	light: 'rgba(0, 0, 0, 0.12) !important',
+	light: 'rgba(0, 0, 0, 0.12)',
 	dark: 'rgba(255, 255, 255, 0.12) !important'
-	
-})
+});
+const getNavActive = style('mode', {
+	light: 'rgba(0,0,0,0.04)',
+	dark: 'rgba(255,255,255,0.04)'
+});
+
 
 const GlobalStyle = createGlobalStyle`
 body {
@@ -34,6 +38,9 @@ body {
 }
 header {
 	background-color: ${getHeader};
+}
+.app-nav .active {
+	background: ${getNavActive};
 }
 .MuiDrawer-paper {
 	background-color: ${getControlsSurface};
@@ -47,6 +54,10 @@ form > div {
 }
 form input {
 	color: ${getForeground};
+}
+form label {
+	color: ${getForeground};
+	opacity: 0.75;
 }
 form button {
 	color: ${getForeground};

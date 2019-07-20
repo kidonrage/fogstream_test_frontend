@@ -12,3 +12,7 @@
 	background: #fff;
 	z-index: 100000;
 }
+
+.map-container {
+	max-width: 100%;
+}
