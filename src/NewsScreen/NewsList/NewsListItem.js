@@ -53,7 +53,7 @@ export default function NewsListItem({newsItem}, key) {
        		</Typography>
 				</CardContent>
 			<CardActions>
-				<Button fullWidth component={ListItemLink} to={"/newsItem"} color="primary">
+				<Button fullWidth component={ListItemLink} to={"/" + newsItem.id} color="primary">
 					Learn More
 				</Button>
 			</CardActions>
