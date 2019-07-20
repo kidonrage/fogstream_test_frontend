@@ -6,84 +6,31 @@ import Container from '@material-ui/core/Container';
 import NewsList from './NewsList/NewsList.js';
 import SearchForm from './SearchForm';
 import CircularProgress from '@material-ui/core/CircularProgress';
+import FetchWorker from './FetchWorker';
 import './NewsScreen.css';
 
 class NewsScreen extends React.Component {
-	state = {
-		page: 1,
-		newsOnPage: 15,
-		articles: [],
-		query: '',
-		from: '',
-		to: '',
-		isFetching: false
-	}
+
+	fetchWorker = new FetchWorker();
 
 	handleContainerOnBottom = () => {
-		// Check the free subscription limit (100 posts)
-		if ((this.state.page + 1) * this.state.newsOnPage <= 100 ) {
-			this.fetchNews(this.state.query, this.state.from, this.state.to);
+		// Check the free subscription limit (100 postss)
+		if (this.props.page * this.props.newsOnPage <= 100 ) {
+			this.fetchWorker.fetchNews(this.props.query, this.props.newsOnPage, this.props.from, this.props.to, this.props.page)
+			.then((nextArticlesJSON) => {
+				this.props.loadMore(nextArticlesJSON.articles);
+			})
 		} else {
-			let remainingArticles = 100 - this.state.articles.length;
+			let remainingArticles = 100 - this.props.articles.length;
 			console.log("Больше грузить нельзя. Хотя надобно ещё: " + remainingArticles);
 		}
-  }
-
-	fetchNews = (query, from, to) => {
-		if (query == null || query === "") {
-			return
-		}
-		let currentPage = this.checkPage(query, from, to)
-		this.setState({
-			page: currentPage,
-			isFetching: true
-		});
-		let apiQuery = this.getApiQuery(query, from, to)
-		console.log("API QUERY: " + apiQuery)
-		fetch(apiQuery)
-		.then((response) => {
-			return response.json();
-		})
-		.then((newsJSON) => {
-			var articles = []
-			console.log(this.state.query == query)
-			if (currentPage > 1) {
-				articles = [...this.state.articles, ...newsJSON.articles];
-			} else {
-				articles = [...newsJSON.articles];
-			}
-			this.setState({
-				articles,
-				from,
-				to,
-				query,
-				isFetching: false
-			})
-		});
 	}
-
-	checkPage = (queryText, from, to) => {
-		if (this.state.query === queryText && this.state.from === from && this.state.to === to) {
-			return this.state.page + 1
-		} else {
-			return 1
-		}
-	}
-
-	getApiQuery = (queryText, from, to) => {
-		let apiQuery = 'https://newsapi.org/v2/everything?q='+ queryText + '&';
-		apiQuery += 'pageSize='+ this.state.newsOnPage +'&';
-		apiQuery += 'page='+ this.state.page +'&';
-		apiQuery += 'from='+from+'&to='+to+'&';
-		apiQuery += 'sortBy=publishedAt&apiKey=b3407958df3b49e1be282480305df7ad';
-		return apiQuery
-	}
-
+	
 	render() {
 		console.log(this.props);
 
-		const fetching = this.state.isFetching;
-		const articles = this.props 
+		const fetching = this.props.isFetching;
+		const articles = this.props.articles
 		
 		return (
 			<Container maxWidth="xl" onScroll={this.handleScroll}>
@@ -94,7 +41,7 @@ class NewsScreen extends React.Component {
 						<CircularProgress  />
 					</div>
 				}
-				<NewsList news={this.state.articles} isFetching={this.state.isFetching} />
+				<NewsList news={articles} />
 				<BottomScrollListener onBottom={this.handleContainerOnBottom} />
 			</Container>
 		)
@@ -103,8 +50,20 @@ class NewsScreen extends React.Component {
 
 const mapStatesToProps = (state) => {
 	return {
-		articles: state.articles
+		articles: state.articles,
+		query: state.query,
+		pageSize: state.pageSize,
+		page: state.page,
+		from: state.from,
+		to: state.to,
+		newsOnPage: state.newsOnPage
 	}
 }
 
-export default connect(mapStatesToProps)(NewsScreen);
+const mapDispatchToProps = (dispatch) => {
+	return {
+		loadMore: (articles) => { dispatch({type: "ADD_ARTICLES", articles: articles}) }
+	}
+}
+
+export default connect(mapStatesToProps, mapDispatchToProps)(NewsScreen);

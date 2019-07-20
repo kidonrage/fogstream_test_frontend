@@ -6,6 +6,7 @@ import IconButton from '@material-ui/core/IconButton';
 import SearchIcon from '@material-ui/icons/Search';
 import Grid from '@material-ui/core/Grid';
 import TextField from '@material-ui/core/TextField';
+import FetchWorker from './FetchWorker';
 import './SearchForm.css'
 
 class SearchForm extends React.Component {
@@ -15,17 +16,48 @@ class SearchForm extends React.Component {
 		to: ''
 	}
 
+	fetchWorker = new FetchWorker();
+
+	fetchNewArticles = () => {
+		let queryInfo = {
+			queryString: this.state.query,
+			fromString: this.state.from,
+			toString: this.state.to
+		}
+		this.fetchWorker.fetchNews(queryInfo.queryString, 15, queryInfo.fromString, queryInfo.toString)
+		.then((newsJSON) => {
+			console.log("JSON PARSED");
+			console.log(newsJSON);
+			var newArticles = []
+			newArticles = [...newsJSON.articles];
+			this.props.saveArticles(newArticles, queryInfo);
+			console.log("ARTICLES: " + newArticles);
+		});
+	}
+
 	handleChange = (e) => {
 		this.setState({
 			[e.target.name]: e.target.value
 		})
 	}
 
+	componentDidMount() {
+		// Обновляем input'ы, чтобы ввод не терялся после, например, посещения настроек
+		this.setState({
+			query: this.props.query,
+			from: this.props.from,
+			to: this.props.to
+		})
+	}
+
 	handleSubmit = (e) => {
 		e.preventDefault();
 		console.log(this.state);
-		this.props.addArticles([{name: "kuradura"}]);
-		this.props.fetchNews(this.state.query, this.state.from, this.state.to);
+		let queryText = this.state.query;
+		if (queryText == null || queryText === "") {
+			return
+		}
+		this.fetchNewArticles();
 	}
 
 	render() {
@@ -39,6 +71,7 @@ class SearchForm extends React.Component {
 								inputProps={{ 'aria-label': 'Напечатайте что-нибудь...' }}
 								onChange={this.handleChange}
 								name="query"
+								value={this.state.query}
 								className="search-form-input"
 							/>
 							<IconButton aria-label="Search" type="submit">
@@ -51,6 +84,7 @@ class SearchForm extends React.Component {
 								label="From"
 								type="date"
 								onChange={this.handleChange}
+								value={this.state.from}
 								InputLabelProps={{
 									shrink: true,
 								}}
@@ -60,6 +94,7 @@ class SearchForm extends React.Component {
 								label="To"
 								type="date"
 								onChange={this.handleChange}
+								value={this.state.to}
 								InputLabelProps={{
 									shrink: true,
 								}}
@@ -74,13 +109,15 @@ class SearchForm extends React.Component {
 
 const mapStatesToProps = (state) => {
 	return {
-		query: state.query
+		query: state.query,
+		from: state.from,
+		to: state.to,
 	}
 }
 
 const mapDispatchToProps = (dispatch) => {
 	return {
-		addArticles: (articles) => { dispatch({type: "ADD_ARTICLES", articles: articles}) }
+		saveArticles: (articles, queryInfo) => { dispatch({type: "REPLACE_ARTICLES", articles: articles, queryInfo: queryInfo }) }
 	}
 }
 

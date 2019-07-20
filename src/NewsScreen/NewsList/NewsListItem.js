@@ -22,7 +22,7 @@ export default function NewsListItem({newsItem}, key) {
 	function getImg(imgSrc) {
 		// Empty img src filtration
 		if (imgSrc && imgSrc !== "https:") {
-			console.log("IMAGE! " + imgSrc);
+			// console.log("IMAGE! " + imgSrc);
 			return imgSrc
 		} else {
 			return noImage

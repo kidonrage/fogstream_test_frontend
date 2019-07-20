@@ -1,11 +1,7 @@
 import React from 'react';
-import FormGroup from '@material-ui/core/FormGroup';
-import FormControlLabel from '@material-ui/core/FormControlLabel';
-import Switch from '@material-ui/core/Switch';
 import Typography from '@material-ui/core/Typography';
 import Slider from '@material-ui/core/Slider';
-
-import ThemeSwitch from '../ThemeSwitch';
+import ThemeSwitch from './ThemeSwitch';
 
 export default function Settings() {
 	return (
