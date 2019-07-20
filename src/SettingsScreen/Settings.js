@@ -9,7 +9,7 @@ import './Settings.css'
 
 const Settings = (props) => {
 
-	var currentNewsOnPage = 0;
+	let currentNewsOnPage = 0;
 
 	const newsOnPageSliderChanged = (e, newValue) => {
 		currentNewsOnPage = newValue;

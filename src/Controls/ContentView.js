@@ -1,6 +1,7 @@
 import React from 'react';
 import NewsScreen from '../NewsScreen/NewsScreen';
 import NewsDetails from '../NewsDetailsScreen/NewsDetails';
+import Container from '@material-ui/core/Container';
 import SettingsScreen from '../SettingsScreen/Settings';
 import About from '../AboutScreen/About';
 import Help from '../HelpScreen/Help';
@@ -20,13 +21,15 @@ export default function ContentView() {
 
 	return (
 		<main className={classes.content}>
-			<div className={classes.toolbar} />
-			<Route exact path="/" component={NewsScreen} />
-			{/* <Route path="/:news_id" component={NewsDetails} /> */}
+			<Container maxWidth="xl">
+				<div className={classes.toolbar} />
+				<Route exact path="/" component={NewsScreen} />
+				{/* <Route path="/:news_id" component={NewsDetails} /> */}
 
-			<Route path="/settings" component={SettingsScreen} />
-			<Route path="/about" component={About} />
-			<Route path="/help" component={Help} />
+				<Route path="/settings" component={SettingsScreen} />
+				<Route path="/about" component={About} />
+				<Route path="/help" component={Help} />
+			</Container>
 		</main>
 	)
 }

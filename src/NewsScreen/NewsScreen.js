@@ -2,7 +2,7 @@ import React from 'react';
 import {connect} from 'react-redux';
 import BottomScrollListener from 'react-bottom-scroll-listener'
 import CssBaseline from '@material-ui/core/CssBaseline';
-import Container from '@material-ui/core/Container';
+
 import NewsList from './NewsList/NewsList.js';
 import SearchForm from './SearchForm';
 import CircularProgress from '@material-ui/core/CircularProgress';
@@ -45,7 +45,7 @@ class NewsScreen extends React.Component {
 		const articles = this.props.articles
 		
 		return (
-			<Container maxWidth="xl" onScroll={this.handleScroll}>
+			<div>
 				<SearchForm fetchNews={this.fetchNews} changeFetching={this.changeFetching} />
 				<CssBaseline />
 				{fetching &&
@@ -55,7 +55,7 @@ class NewsScreen extends React.Component {
 				}
 				<NewsList news={articles} />
 				<BottomScrollListener onBottom={this.handleContainerOnBottom} />
-			</Container>
+			</div>
 		)
 	}
 }
