@@ -1,0 +1,11 @@
+.article-detailed {
+	width: 100%;
+}
+.article-detailed-img {
+	width: 100%;
+	height: auto;
+	max-height: 500px;
+}
+.article-detailed-title {
+	margin-bottom: 10px !important;
+}

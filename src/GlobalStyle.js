@@ -39,7 +39,8 @@ body {
 	background-color: ${getBackground};
 	color: ${getForeground};
 }
-header {
+header,
+.MuiAvatar-root {
 	background-color: ${getHeader};
 }
 .app-nav .active {
@@ -73,9 +74,15 @@ form button {
 .MuiCardContent-root span{
 	color: ${getForeground};
 }
+.MuiCardHeader-root,
+.MuiCardHeader-root span,
 .MuiCardActions-root,
-.MuiCardActions-root button{
+.MuiCardActions-root button,
+.MuiButton-root{
 	background-color: ${getFormBG};
+	color: ${getForeground};
+}
+.MuiButton-label {
 	color: ${getForeground};
 }
 .fetching-indicator {

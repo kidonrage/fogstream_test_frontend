@@ -15,10 +15,10 @@ function App() {
 		<ThemeProvider theme={theme}>
 			<div className = "root">
 				<GlobalStyle />
-					<BrowserRouter>
-						<ControlPanel />
-						<ContentView />
-					</BrowserRouter>
+				<BrowserRouter>
+					<ControlPanel />
+					<ContentView />
+				</BrowserRouter>
 			</div>
 		</ThemeProvider>
 	)

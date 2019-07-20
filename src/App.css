@@ -1,7 +1,9 @@
 .root {
 	display: flex;
 }
-
+.root > main {
+	max-width: 100%;
+}
 /* Peremestit' */
 .app-nav .active {
 	background: rgba(0,0,0,0.04);
