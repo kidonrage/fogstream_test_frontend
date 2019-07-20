@@ -27,12 +27,9 @@ class SearchForm extends React.Component {
 		}
 		this.fetchWorker.fetchNews(queryInfo.queryString, this.props.newsOnPage, queryInfo.fromString, queryInfo.toString)
 		.then((newsJSON) => {
-			console.log("JSON PARSED");
-			console.log(newsJSON);
 			var newArticles = []
 			newArticles = [...newsJSON.articles];
 			this.props.saveArticles(newArticles, queryInfo);
-			console.log("ARTICLES: " + newArticles);
 			this.props.setFetching(false)
 		});
 	}

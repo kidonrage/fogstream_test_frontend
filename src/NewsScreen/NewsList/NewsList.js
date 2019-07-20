@@ -12,7 +12,7 @@ export default function NewsList({news}, {isFetching}) {
 			)
 		})
 	) : (
-		<p>У! По вашему запросу нет новостей!</p>
+		<p>Упс! Кажется, тут нет новостей!</p>
 	);
 	
   return (
