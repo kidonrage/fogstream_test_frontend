@@ -10,14 +10,12 @@ const mapStyles = {
 
 export class MapContainer extends React.Component {
 	state = {
-    showingInfoWindow: false,  //Hides or the shows the infoWindow
-    activeMarker: {},          //Shows the active marker upon click
-    selectedPlace: {}          //Shows the infoWindow to the selected place upon a marker
+    showingInfoWindow: false,
+    activeMarker: {},
   };
 
 	onMarkerClick = (props, marker, e) =>
     this.setState({
-      selectedPlace: props,
       activeMarker: marker,
       showingInfoWindow: true
     });
@@ -29,7 +27,8 @@ export class MapContainer extends React.Component {
         activeMarker: null
       });
     }
-  };
+	};
+	
 	render() {
     return (
 			<Grid item xs={12} >
@@ -37,11 +36,11 @@ export class MapContainer extends React.Component {
 					google={this.props.google}
 					zoom={14}
 					style={mapStyles}
-					initialCenter={{ lat: -1.2884, lng: 36.8233 }}
+					initialCenter={{ lat: this.props.placeToShow.lat, lng: this.props.placeToShow.lng }}
 				>
 					<Marker
 						onClick={this.onMarkerClick}
-						name={'Kenyatta International Convention Centre'}
+						name={this.props.placeToShow.name}
 					/>
 					<InfoWindow
 						marker={this.state.activeMarker}
@@ -49,13 +48,14 @@ export class MapContainer extends React.Component {
 						onClose={this.onClose}
 					>
 						<div>
-							<h4>{this.state.selectedPlace.name}</h4>
+							<h4>{this.props.placeToShow.name}</h4>
 						</div>
 					</InfoWindow>
 				</Map>
 			</Grid>
     );
   }
+
 }
  
 export default GoogleApiWrapper({

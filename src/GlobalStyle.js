@@ -2,11 +2,12 @@ import {createGlobalStyle} from 'styled-components';
 import style from 'styled-theming';
 
 const getBackground = style('mode', {
-	light: '#fefefe !important',
+	// For the light theme using default material ui styles (they're commented) and custom styles for the dark
+	// light: '#fefefe !important', 
 	dark: '#121212 !important'
 });
 const getForeground = style('mode', {
-	light: '#111 !important',
+	// light: '#111 !important',
 	dark: 'rgba(197,197,197,1) !important'
 });
 const getHeader = style('mode', {
@@ -14,20 +15,22 @@ const getHeader = style('mode', {
 	dark: 'rgba(31,31,31,1) !important'
 });
 const getControlsSurface = style('mode', {
-	light: '#fff',
+	// light: '#fff',
 	dark: 'rgba(31,31,31,1) !important'
 });
 const getFormBG = style('mode', {
-	light: '#fff',
+	// light: '#fff',
 	dark: 'rgba(55,55,55,1) !important'
 });
 const getLines = style('mode', {
-	light: 'rgba(0, 0, 0, 0.12)',
+	// light: 'rgba(0, 0, 0, 0.12)',
 	dark: 'rgba(255, 255, 255, 0.12) !important'
 });
 const getNavActive = style('mode', {
-	light: 'rgba(0,0,0,0.04)',
 	dark: 'rgba(255,255,255,0.04)'
+});
+const getCardAction = style('mode', {
+	dark: 'rgba(255,255,255,0.04) !important'
 });
 
 
@@ -68,6 +71,11 @@ form button {
 .MuiCardContent-root,
 .MuiCardContent-root p,
 .MuiCardContent-root span{
+	color: ${getForeground};
+}
+.MuiCardActions-root,
+.MuiCardActions-root button{
+	background-color: ${getFormBG};
 	color: ${getForeground};
 }
 .fetching-indicator {
