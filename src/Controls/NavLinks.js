@@ -30,9 +30,7 @@ const icons = (index) => {
 	}
 }
 
-function ListItemLink(props) {
-  return <ListItem button component={NavLink} {...props}  />;
-}
+const ListItemLink = React.forwardRef((props, ref) => <NavLink innerRef={ref} {...props} />);
 
 function NavLinks({width}) {
 	const classes = useStyles();
@@ -51,10 +49,10 @@ function NavLinks({width}) {
 			}
 			<List className="app-nav">
 				{menu.map((menuItem, index) => (
-					<ListItemLink exact to={menuItem.href} key={menuItem.title}>
+				<ListItem button component={ListItemLink} exact to={menuItem.href} key={menuItem.title}>
 						<ListItemIcon>{icons(index)}</ListItemIcon>
 						<ListItemText primary={menuItem.title} />
-					</ListItemLink>
+					</ListItem>
 				))}
 			</List>
 		</div>
