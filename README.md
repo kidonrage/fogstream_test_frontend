@@ -11,6 +11,7 @@
 - [ ] Приложение сейчас в некоторых местах на английском, а в некоторых - на русском языке . Это случилось только из-за того, что мне на определенном языке удобнее было в некоторых моментах писать
 
 
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
