@@ -5,6 +5,7 @@ import Divider from '@material-ui/core/Divider';
 import Slider from '@material-ui/core/Slider';
 import Button from '@material-ui/core/Button';
 import ThemeSwitch from './ThemeSwitch';
+import FontSizeSlider from './FontSizeSlider';
 import './Settings.css'
 
 const Settings = (props) => {
@@ -22,17 +23,7 @@ const Settings = (props) => {
 	return (
 		<div className="settings-form">
       <ThemeSwitch />
-			<Typography id="discrete-slider" gutterBottom>
-        Font Size
-      </Typography>
-      <Slider
-        defaultValue={18}
-        valueLabelDisplay="auto"
-        step={1}
-        min={10}
-        max={24}
-				disabled
-      />
+			<FontSizeSlider />
 			<Divider variant="fullWidth" />
 			<Typography id="discrete-slider" gutterBottom>
         Posts count

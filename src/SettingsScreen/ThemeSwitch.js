@@ -3,7 +3,7 @@ import {ThemeConsumer} from 'styled-components';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import Switch from '@material-ui/core/Switch';
 
-export default function ToggleMode() {
+export default function ThemeSwitch() {
 	return(<ThemeConsumer>{theme => (
 		<FormControlLabel
 			control={

@@ -32,6 +32,9 @@ const getNavActive = style('mode', {
 
 
 const GlobalStyle = createGlobalStyle`
+html {
+	font-size: ${props => props.theme.fontSize}px;
+}
 body {
 	background-color: ${getBackground};
 	color: ${getForeground};
